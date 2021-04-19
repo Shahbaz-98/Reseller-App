@@ -1,0 +1,46 @@
+{%extends 'accounts/main.html'%}
+{% load static %}
+{% load imagefit %}
+
+{% block content %}
+
+<style>
+  .product-pic{
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+
+  .btn{
+    color: white
+  }
+</style>
+
+
+<div class="card card-body text-center" id="bg-card">
+	<div class="row">
+		<div class="col-md-5 mx-auto">
+			<h5>PRODUCTS:</h5>
+			<hr>
+			{% for product in products %}
+        <div class="card" id="main-card">
+          <div class="card-content white-text">
+            <br>
+            <img class="product-pic" src="{{product.pic.url|resize:'320x240'}}" >
+            <hr>
+            <h5>{{product.name}}</h5>
+            <h5>Rs. {{product.price}}</h5>
+            <h6>{{product.description}}</h6>
+            
+          </div>
+          <div class="card-action">
+          <a class="btn btn-outline-info  btn-sm btn-block btn-primary" href="{% url 'create_order'%}">Place Order</a>
+          <a class="btn btn-outline-info  btn-sm btn-block btn-success" href="{% url 'create_order'%}">Share</a>
+          </div>
+        </div>
+        <br>
+      {% endfor %}
+  	</div>
+
+	</div>
+</div>
+{% endblock %}
